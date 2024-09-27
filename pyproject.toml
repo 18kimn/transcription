@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "transcription"
+version = "0.1.0"
+description = ""
+authors = ["nathan kim <nathanckim18@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyannote-audio = "^3.3.2"
+pydub = "^0.25.1"
+faster-whisper = "^1.0.3"
+torchaudio = "^2.4.1"
+pandas = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
