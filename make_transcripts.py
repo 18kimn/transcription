@@ -8,7 +8,7 @@ from pyannote.audio import Pipeline
 from pyannote.audio.pipelines.utils.hook import ProgressHook
 from pydub import AudioSegment
 
-HF_TOKEN = dotenv_values("../../.env")["HF_TOKEN"]
+HF_TOKEN = dotenv_values(".env")["HF_TOKEN"]
 
 # Must accept at https://huggingface.co/pyannote/segmentation-3.0 and https://huggingface.co/pyannote/speaker-diarization-3.1
 pipeline = Pipeline.from_pretrained(
@@ -22,7 +22,7 @@ if not os.path.exists('temp_audio'):
 if not os.path.exists('transcripts'):
     os.makedirs('transcripts')
 if not os.path.exists('cleaned_transcripts'):
-    os.makedirs('transcripts')
+    os.makedirs('cleaned_transcripts')
 
 def transcribe_mp4(filename):
     """
@@ -32,8 +32,7 @@ def transcribe_mp4(filename):
     if os.path.exists(export_filename):
        return  
     
-    # Convert to WAV, since Pyannote doesn't support mp4s
-    audio = AudioSegment.from_file(filename, format="mp4")
+    audio = AudioSegment.from_file(filename)
 
     print("Running whisper for full transcript...")
     whisper_result, _ = whisper_model.transcribe(filename, word_timestamps=True)
