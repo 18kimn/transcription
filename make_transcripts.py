@@ -28,7 +28,7 @@ def transcribe_mp4(filename):
     """
     Combines Pyannote and Whisper to transcribe segments of an interview with speaker annotation
     """
-    export_filename = f"transcripts/{os.path.basename(filename).replace('.mp4', '')}.csv"
+    export_filename = f"transcripts/{os.path.basename(filename).replace('.wav', '')}.csv"
     if os.path.exists(export_filename):
        return  
     
@@ -62,5 +62,5 @@ def transcribe_mp4(filename):
     pd.DataFrame(speaker_transcriptions).to_csv(export_filename, index=False)
             
     
-for filename in os.listdir('mp4s'):
-    transcribe_mp4(f"mp4s/{filename}")
+for filename in os.listdir('wavs'):
+    transcribe_mp4(f"wavs/{filename}")
